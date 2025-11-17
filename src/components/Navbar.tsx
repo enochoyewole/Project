@@ -19,7 +19,7 @@ const CountryItem = ({ country, isSelected, onSelect }: CountryItemProps) => {
   return (
     <button
       onClick={() => onSelect(country)}
-      className={`w-full flex items-center space-x-3 px-4 py-2 hover:bg-gray-50 transition-colors ${
+      className={`w-full flex items-center space-x-3 px-4 py-2 hover:bg-gray-50 transition-colors cursor-pointer ${
         isSelected ? 'bg-blue-50' : ''
       }`}
     >
@@ -29,7 +29,9 @@ const CountryItem = ({ country, isSelected, onSelect }: CountryItemProps) => {
         className="w-5 h-5 object-cover rounded-full"
         onError={handleError}
       />
-      <span className="text-sm text-gray-700">{country.name}</span>
+      <span className="text-sm text-gray-700 cursor-pointer">
+        {country.name}
+      </span>
     </button>
   );
 };

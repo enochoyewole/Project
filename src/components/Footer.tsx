@@ -4,6 +4,7 @@ import {
   FacebookIcon,
   ArrowUpIcon,
 } from './Icons';
+import { footerSections, socialLinks } from '../constants/footerLinks';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -23,29 +24,25 @@ const Footer = () => {
           </div>
 
           <div className="flex items-center space-x-3 sm:space-x-4">
-            <a
-              href="#"
-              className="w-10 h-10 flex items-center justify-center rounded-full text-[#949699] hover:text-white transition-colors"
-              aria-label="LinkedIn"
-            >
-              <LinkedInIcon />
-            </a>
+            {socialLinks.map((social) => {
+              const IconComponent =
+                social.name === 'LinkedIn'
+                  ? LinkedInIcon
+                  : social.name === 'Instagram'
+                  ? InstagramIcon
+                  : FacebookIcon;
 
-            <a
-              href="#"
-              className="w-10 h-10 flex items-center justify-center rounded-full text-[#949699] hover:text-white transition-colors"
-              aria-label="Instagram"
-            >
-              <InstagramIcon />
-            </a>
-
-            <a
-              href="#"
-              className="w-10 h-10 flex items-center justify-center rounded-full text-[#949699] hover:text-white transition-colors"
-              aria-label="Facebook"
-            >
-              <FacebookIcon />
-            </a>
+              return (
+                <a
+                  key={social.name}
+                  href={social.href}
+                  className="w-10 h-10 flex items-center justify-center rounded-full text-[#949699] hover:text-white transition-colors"
+                  aria-label={social.ariaLabel}
+                >
+                  <IconComponent />
+                </a>
+              );
+            })}
           </div>
         </div>
 
@@ -60,125 +57,25 @@ const Footer = () => {
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 mb-8">
-          <div>
-            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">
-              Products
-            </h4>
-            <ul className="space-y-1.5 sm:space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Shop
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Cards
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Credit Builder
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Investment
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">
-              Legal
-            </h4>
-            <ul className="space-y-1.5 sm:space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Customer Terms of use
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Merchant Terms of service
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Privacy Notice
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">
-              Support
-            </h4>
-            <ul className="space-y-1.5 sm:space-y-2">
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  FAQs
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  Blog
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">
-              Contact us
-            </h4>
-            <ul className="space-y-1.5 sm:space-y-2">
-              <li>
-                <a
-                  href="mailto:hello@credpal.com"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  hello@credpal.com
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+2347087409746"
-                  className="text-sm text-[#949699] hover:text-white transition-colors"
-                >
-                  +234 708 740 9746
-                </a>
-              </li>
-            </ul>
-          </div>
+          {footerSections.map((section) => (
+            <div key={section.title}>
+              <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">
+                {section.title}
+              </h4>
+              <ul className="space-y-1.5 sm:space-y-2">
+                {section.links.map((link) => (
+                  <li key={link.label}>
+                    <a
+                      href={link.href}
+                      className="text-sm text-[#949699] hover:text-white transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
         <div className="pt-6 sm:pt-8">
