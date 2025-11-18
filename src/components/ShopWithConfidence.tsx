@@ -1,5 +1,16 @@
+// ShopWithConfidence component - displays three feature cards
+import './ShopWithConfidence.css';
+
+// Define the feature item type
+interface FeatureItem {
+  icon: string;
+  title: string;
+  description: string;
+}
+
 const ShopWithConfidence = () => {
-  const features = [
+  // List of features to display
+  const featureList: FeatureItem[] = [
     {
       icon: '/Bag.svg',
       title: 'Pay Later',
@@ -20,28 +31,29 @@ const ShopWithConfidence = () => {
   ];
 
   return (
-    <section className="py-10 md:py-20 bg-[#F7F8FA]">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-black  mb-16 md:mb-20">
+    <section className="shop-with-confidence-section">
+      <div className="shop-with-confidence-container">
+        <h2 className="shop-with-confidence-title">
           Shop with confidence
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12 lg:gap-16">
-          {features.map((feature, index) => (
-            <div key={index} className="flex flex-col space-y-4">
-              <div className="mb-2">
+        {/* Grid of feature cards */}
+        <div className="shop-with-confidence-grid">
+          {featureList.map((feature, index) => (
+            <div key={index} className="shop-with-confidence-card">
+              <div className="shop-with-confidence-icon-wrapper">
                 <img
                   src={feature.icon}
                   alt={feature.title}
-                  className="w-12 h-12 md:w-14 md:h-14"
+                  className="shop-with-confidence-icon"
                 />
               </div>
 
-              <h3 className="text-xl md:text-2xl font-extrabold text-[#000000]">
+              <h3 className="shop-with-confidence-card-title">
                 {feature.title}
               </h3>
 
-              <p className="text-base md:text-lg font-light text-[#000000] leading-relaxed max-w-sm">
+              <p className="shop-with-confidence-card-description">
                 {feature.description}
               </p>
             </div>

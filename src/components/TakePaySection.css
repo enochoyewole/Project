@@ -1,0 +1,278 @@
+/* TakePaySection component styles */
+
+.take-pay-section {
+  padding: 3rem 0;
+  background-color: white;
+}
+
+@media (min-width: 640px) {
+  .take-pay-section {
+    padding: 4rem 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-section {
+    padding: 6rem 0;
+  }
+}
+
+.take-pay-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .take-pay-container {
+    padding: 0 1.5rem;
+  }
+}
+
+.take-pay-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .take-pay-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .take-pay-grid {
+    gap: 4rem;
+  }
+}
+
+/* Image wrapper - order changes on mobile */
+.take-pay-image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.take-pay-image-order-2 {
+  order: 2;
+}
+
+@media (min-width: 768px) {
+  .take-pay-image-order-2 {
+    order: 1;
+  }
+}
+
+.take-pay-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+}
+
+.take-pay-card-background {
+  background-color: #F5F5F5;
+  border-radius: 1rem;
+  padding: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .take-pay-card-background {
+    padding: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-card-background {
+    padding: 3rem;
+  }
+}
+
+.take-pay-card-wrapper {
+  position: relative;
+  height: 14rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .take-pay-card-wrapper {
+    height: 16rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-card-wrapper {
+    height: 20rem;
+  }
+}
+
+.take-pay-card-rotated {
+  position: relative;
+  z-index: 20;
+  transform: rotate(10deg);
+}
+
+.take-pay-card-image {
+  width: 12rem;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.1));
+}
+
+@media (min-width: 640px) {
+  .take-pay-card-image {
+    width: 14rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-card-image {
+    width: 16rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .take-pay-card-image {
+    width: 18rem;
+  }
+}
+
+/* Content wrapper - order changes on mobile */
+.take-pay-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.take-pay-content-order-1 {
+  order: 1;
+}
+
+@media (min-width: 768px) {
+  .take-pay-content-order-1 {
+    order: 2;
+  }
+}
+
+@media (min-width: 640px) {
+  .take-pay-content {
+    gap: 1rem;
+  }
+}
+
+.take-pay-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(to right, #1F23FF, #0080FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (min-width: 640px) {
+  .take-pay-label {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-label {
+    font-size: 1rem;
+  }
+}
+
+.take-pay-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #000000;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .take-pay-title {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-title {
+    font-size: 2.375rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .take-pay-title {
+    font-size: 2.625rem;
+  }
+}
+
+.take-pay-subtitle {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #000000;
+  line-height: 1.75;
+}
+
+@media (min-width: 640px) {
+  .take-pay-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+.take-pay-button {
+  background-color: #000000;
+  height: 40px;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.take-pay-button:hover {
+  background-color: #1f2937;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .take-pay-button {
+    height: 45px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .take-pay-button {
+    font-size: 1.125rem;
+  }
+}
+
+.take-pay-button-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.2s;
+}
+
+.take-pay-button:hover .take-pay-button-icon {
+  transform: translateX(4px);
+}
+

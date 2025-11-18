@@ -1,0 +1,273 @@
+/* CredpalSavings component styles */
+
+.credpal-savings-section {
+  padding: 3rem 0;
+  background-color: white;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-section {
+    padding: 4rem 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-section {
+    padding: 6rem 0;
+  }
+}
+
+.credpal-savings-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-container {
+    padding: 0 1.5rem;
+  }
+}
+
+.credpal-savings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .credpal-savings-grid {
+    gap: 4rem;
+  }
+}
+
+.credpal-savings-image-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.credpal-savings-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 36rem;
+}
+
+.credpal-savings-card-background {
+  background-color: #F5F5F5;
+  border-radius: 1rem;
+  padding-top: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-bottom: 0;
+  overflow: hidden;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-card-background {
+    padding-top: 2rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-card-background {
+    padding-top: 3rem;
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+}
+
+.credpal-savings-card-content {
+  position: relative;
+  height: 16rem;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-card-content {
+    height: 18rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-card-content {
+    height: 20rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .credpal-savings-card-content {
+    height: 24rem;
+  }
+}
+
+.credpal-savings-image-inner {
+  position: relative;
+  z-index: 20;
+  display: flex;
+  align-items: flex-end;
+}
+
+.credpal-savings-phone-image {
+  width: 100%;
+  max-width: 17.5rem;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.1));
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-phone-image {
+    max-width: 20rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-phone-image {
+    max-width: 22.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .credpal-savings-phone-image {
+    max-width: 25rem;
+  }
+}
+
+.credpal-savings-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-content {
+    gap: 1rem;
+  }
+}
+
+.credpal-savings-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: linear-gradient(to right, #1F23FF, #0080FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-label {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-label {
+    font-size: 1rem;
+  }
+}
+
+.credpal-savings-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #000000;
+  line-height: 1.2;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-title {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-title {
+    font-size: 2.375rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .credpal-savings-title {
+    font-size: 2.625rem;
+  }
+}
+
+.credpal-savings-subtitle {
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: #000000;
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-subtitle {
+    font-size: 1.125rem;
+  }
+}
+
+.credpal-savings-button {
+  background-color: #000000;
+  height: 40px;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: none;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s;
+}
+
+.credpal-savings-button:hover {
+  background-color: #1f2937;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .credpal-savings-button {
+    height: 45px;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .credpal-savings-button {
+    font-size: 1.125rem;
+  }
+}
+
+.credpal-savings-button-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.2s;
+}
+
+.credpal-savings-button:hover .credpal-savings-button-icon {
+  transform: translateX(4px);
+}
+

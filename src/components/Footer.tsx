@@ -1,42 +1,131 @@
+// Footer component - displays footer links, social media, and company info
 import {
   LinkedInIcon,
   InstagramIcon,
   FacebookIcon,
   ArrowUpIcon,
-} from './Icons';
-import { footerSections, socialLinks } from '../constants/footerLinks';
+} from './IconComponents';
+import './Footer.css';
+
+// Define footer link types
+interface FooterLink {
+  label: string;
+  href: string;
+}
+
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
+
+interface SocialLink {
+  name: string;
+  href: string;
+  ariaLabel: string;
+}
 
 const Footer = () => {
+  // Footer sections with links - moved from constants
+  const footerSections: FooterSection[] = [
+    {
+      title: 'Products',
+      links: [
+        { label: 'Shop', href: '#' },
+        { label: 'Cards', href: '#' },
+        { label: 'Credit Builder', href: '#' },
+        { label: 'Investment', href: '#' },
+      ],
+    },
+    {
+      title: 'Legal',
+      links: [
+        { label: 'Customer Terms of use', href: '#' },
+        { label: 'Merchant Terms of service', href: '#' },
+        { label: 'Privacy Notice', href: '#' },
+      ],
+    },
+    {
+      title: 'Support',
+      links: [
+        { label: 'FAQs', href: '#' },
+        { label: 'Blog', href: '#' },
+      ],
+    },
+    {
+      title: 'Contact us',
+      links: [
+        { label: 'hello@credpal.com', href: 'mailto:hello@credpal.com' },
+        { label: '+234 708 740 9746', href: 'tel:+2347087409746' },
+      ],
+    },
+  ];
+
+  // Social media links - moved from constants
+  const socialLinks: SocialLink[] = [
+    {
+      name: 'LinkedIn',
+      href: '#',
+      ariaLabel: 'LinkedIn',
+    },
+    {
+      name: 'Instagram',
+      href: '#',
+      ariaLabel: 'Instagram',
+    },
+    {
+      name: 'Facebook',
+      href: '#',
+      ariaLabel: 'Facebook',
+    },
+  ];
+
+  // Scroll to top function
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Get the correct social icon component based on name
+  const getSocialIcon = (socialName: string) => {
+    switch (socialName) {
+      case 'LinkedIn':
+        return LinkedInIcon;
+      case 'Instagram':
+        return InstagramIcon;
+      case 'Facebook':
+        return FacebookIcon;
+      default:
+        return LinkedInIcon;
+    }
+  };
+
+  // Dark background color
+  const darkBackground = '#191919';
+
   return (
-    <footer className="bg-[#191919] text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0 mb-8">
-          <div className="flex items-center">
+    <footer
+      className="footer"
+      style={{ backgroundColor: darkBackground }}
+    >
+      <div className="footer-container">
+        {/* Logo and social links */}
+        <div className="footer-header">
+          <div className="footer-logo-wrapper">
             <img
               src="/logo-2.png"
               alt="CredPal Logo"
-              className="h-7 sm:h-8 md:h-10"
+              className="footer-logo"
             />
           </div>
 
-          <div className="flex items-center space-x-3 sm:space-x-4">
+          <div className="footer-social-links">
             {socialLinks.map((social) => {
-              const IconComponent =
-                social.name === 'LinkedIn'
-                  ? LinkedInIcon
-                  : social.name === 'Instagram'
-                  ? InstagramIcon
-                  : FacebookIcon;
+              const IconComponent = getSocialIcon(social.name);
 
               return (
                 <a
                   key={social.name}
                   href={social.href}
-                  className="w-10 h-10 flex items-center justify-center rounded-full text-[#949699] hover:text-white transition-colors"
+                  className="footer-social-link"
                   aria-label={social.ariaLabel}
                 >
                   <IconComponent />
@@ -46,28 +135,31 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-[#949699] mb-8"></div>
+        {/* Divider line */}
+        <div className="footer-divider"></div>
 
-        <div className="mb-8">
-          <p className="text-sm md:text-base text-[#949699] w-full max-w-5xl leading-relaxed">
+        {/* Company description */}
+        <div className="footer-description-wrapper">
+          <p className="footer-description">
             CredPal is a revolutionary credit solution geared towards providing
             seamless credit access for businesses and individuals across
             developing economies.
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 sm:gap-8 mb-8">
+        {/* Footer links grid */}
+        <div className="footer-links-grid">
           {footerSections.map((section) => (
-            <div key={section.title}>
-              <h4 className="font-bold text-sm sm:text-base mb-3 sm:mb-4">
+            <div key={section.title} className="footer-section">
+              <h4 className="footer-section-title">
                 {section.title}
               </h4>
-              <ul className="space-y-1.5 sm:space-y-2">
+              <ul className="footer-section-links">
                 {section.links.map((link) => (
-                  <li key={link.label}>
+                  <li key={link.label} className="footer-link-item">
                     <a
                       href={link.href}
-                      className="text-sm text-[#949699] hover:text-white transition-colors"
+                      className="footer-link"
                     >
                       {link.label}
                     </a>
@@ -78,18 +170,17 @@ const Footer = () => {
           ))}
         </div>
 
-        <div className="pt-6 sm:pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center space-y-3 sm:space-y-4 md:space-y-0 gap-4">
-            <div className="text-sm text-[#949699]">© CredPal 2024</div>
+        {/* Footer bottom - copyright and back to top */}
+        <div className="footer-bottom">
+          <div className="footer-copyright">© CredPal 2024</div>
 
-            <button
-              onClick={scrollToTop}
-              className="flex items-center space-x-2 text-sm text-[#949699] hover:text-white transition-colors"
-            >
-              <span>Go back to top</span>
-              <ArrowUpIcon />
-            </button>
-          </div>
+          <button
+            onClick={scrollToTop}
+            className="footer-back-to-top"
+          >
+            <span>Go back to top</span>
+            <ArrowUpIcon />
+          </button>
         </div>
       </div>
     </footer>

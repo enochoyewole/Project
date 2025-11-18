@@ -1,9 +1,12 @@
-// Social Media Icons
-export const LinkedInIcon = ({
-  className = 'w-6 h-6',
-}: {
+// IconComponents - reusable icon components for the app
+
+// Props for icon components
+interface IconProps {
   className?: string;
-}) => (
+}
+
+// LinkedIn icon component
+export const LinkedInIcon = ({ className = '' }: IconProps) => (
   <svg
     className={className}
     fill="currentColor"
@@ -14,11 +17,8 @@ export const LinkedInIcon = ({
   </svg>
 );
 
-export const InstagramIcon = ({
-  className = 'w-6 h-6',
-}: {
-  className?: string;
-}) => (
+// Instagram icon component
+export const InstagramIcon = ({ className = '' }: IconProps) => (
   <svg
     className={className}
     fill="currentColor"
@@ -29,11 +29,8 @@ export const InstagramIcon = ({
   </svg>
 );
 
-export const FacebookIcon = ({
-  className = 'w-6 h-6',
-}: {
-  className?: string;
-}) => (
+// Facebook icon component
+export const FacebookIcon = ({ className = '' }: IconProps) => (
   <svg
     className={className}
     fill="currentColor"
@@ -44,12 +41,8 @@ export const FacebookIcon = ({
   </svg>
 );
 
-// Arrow Icons
-export const ArrowUpIcon = ({
-  className = 'w-4 h-4',
-}: {
-  className?: string;
-}) => (
+// Arrow up icon component
+export const ArrowUpIcon = ({ className = '' }: IconProps) => (
   <svg
     className={className}
     fill="none"
@@ -65,11 +58,8 @@ export const ArrowUpIcon = ({
   </svg>
 );
 
-export const ArrowRightIcon = ({
-  className = 'w-5 h-5',
-}: {
-  className?: string;
-}) => (
+// Arrow right icon component
+export const ArrowRightIcon = ({ className = '' }: IconProps) => (
   <svg
     className={className}
     fill="none"
@@ -85,11 +75,8 @@ export const ArrowRightIcon = ({
   </svg>
 );
 
-export const ChevronDownIcon = ({
-  className = 'w-4 h-4',
-}: {
-  className?: string;
-}) => (
+// Chevron down icon component
+export const ChevronDownIcon = ({ className = '' }: IconProps) => (
   <svg
     className={className}
     fill="none"

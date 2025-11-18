@@ -1,12 +1,21 @@
+// Navbar component - navigation bar with logo, menu, and country selector
 import { useState } from 'react';
-import { ChevronDownIcon } from './Icons';
-import { useFlagImage } from '../hooks/useFlagImage';
+import { ChevronDownIcon } from './IconComponents';
+import './Navbar.css';
 
+// Define country type
 interface Country {
   code: string;
   name: string;
 }
 
+// Define product type
+interface Product {
+  name: string;
+  href: string;
+}
+
+// Country item component - displays a country option in the dropdown
 interface CountryItemProps {
   country: Country;
   isSelected: boolean;
@@ -14,22 +23,38 @@ interface CountryItemProps {
 }
 
 const CountryItem = ({ country, isSelected, onSelect }: CountryItemProps) => {
-  const { flagUrl, handleError } = useFlagImage(country.code);
+  // Build flag image URL from country code
+  const FLAG_CDN_BASE_URL = 'https://flagcdn.com/w20';
+  const DEFAULT_COUNTRY_CODE = 'ng';
+  
+  const buildFlagUrl = (countryCode: string): string => {
+    return `${FLAG_CDN_BASE_URL}/${countryCode.toLowerCase()}.png`;
+  };
+  
+  const getDefaultFlagUrl = (): string => {
+    return buildFlagUrl(DEFAULT_COUNTRY_CODE);
+  };
+  
+  const flagUrl = buildFlagUrl(country.code);
+  const defaultFlagUrl = getDefaultFlagUrl();
+  
+  // Handle flag image error - use default flag if image fails to load
+  const handleFlagError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = defaultFlagUrl;
+  };
 
   return (
     <button
       onClick={() => onSelect(country)}
-      className={`w-full flex items-center space-x-3 px-4 py-2 hover:bg-gray-50 transition-colors cursor-pointer ${
-        isSelected ? 'bg-blue-50' : ''
-      }`}
+      className={`country-item ${isSelected ? 'country-item-selected' : ''}`}
     >
       <img
         src={flagUrl}
         alt={country.name}
-        className="w-5 h-5 object-cover rounded-full"
-        onError={handleError}
+        className="country-item-flag"
+        onError={handleFlagError}
       />
-      <span className="text-sm text-gray-700 cursor-pointer">
+      <span className="country-item-name">
         {country.name}
       </span>
     </button>
@@ -37,61 +62,97 @@ const CountryItem = ({ country, isSelected, onSelect }: CountryItemProps) => {
 };
 
 const Navbar = () => {
+  // State for dropdown menus
   const [isCountryDropdownOpen, setIsCountryDropdownOpen] = useState(false);
   const [isProductsDropdownOpen, setIsProductsDropdownOpen] = useState(false);
 
-  const countries = [
+  // List of available countries
+  const countryList: Country[] = [
     { code: 'NG', name: 'Nigeria' },
     { code: 'KE', name: 'Kenya' },
     { code: 'GH', name: 'Ghana' },
   ];
 
-  const products = [
+  // List of products
+  const productList: Product[] = [
     { name: 'Pay in 4', href: '#' },
     { name: 'CredPal Card', href: '#' },
     { name: 'CredPal Savings', href: '#' },
     { name: 'Shop with CredPal', href: '#' },
   ];
 
-  const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-  const { flagUrl: selectedFlagUrl, handleError: handleSelectedFlagError } =
-    useFlagImage(selectedCountry.code);
+  // Selected country state
+  const [selectedCountry, setSelectedCountry] = useState(countryList[0]);
+  
+  // Build flag URL for selected country
+  const FLAG_CDN_BASE_URL = 'https://flagcdn.com/w20';
+  const DEFAULT_COUNTRY_CODE = 'ng';
+  
+  const buildFlagUrl = (countryCode: string): string => {
+    return `${FLAG_CDN_BASE_URL}/${countryCode.toLowerCase()}.png`;
+  };
+  
+  const getDefaultFlagUrl = (): string => {
+    return buildFlagUrl(DEFAULT_COUNTRY_CODE);
+  };
+  
+  const selectedFlagUrl = buildFlagUrl(selectedCountry.code);
+  const defaultFlagUrl = getDefaultFlagUrl();
+  
+  // Handle flag image error
+  const handleSelectedFlagError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    e.currentTarget.src = defaultFlagUrl;
+  };
+
+  // Handle country selection
+  const handleCountrySelect = (country: Country) => {
+    setSelectedCountry(country);
+    setIsCountryDropdownOpen(false);
+  };
+
+  // Close all dropdowns when clicking outside
+  const handleDropdownClose = () => {
+    setIsCountryDropdownOpen(false);
+    setIsProductsDropdownOpen(false);
+  };
+
+  // Hero gradient background
+  const heroGradient = 'linear-gradient(to right, #E8FCFF, #FCF8F0, #E6EBFE, #D9E8FF)';
 
   return (
     <nav
-      className="px-4 md:px-6 lg:px-8 py-4 sticky top-0 z-50"
+      className="navbar"
       style={{
-        background:
-          'linear-gradient(to right, #E8FCFF, #FCF8F0, #E6EBFE, #D9E8FF)',
+        background: heroGradient,
       }}
     >
-      <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <div className="flex items-center space-x-6 lg:space-x-8">
-          <img src="/logo.svg" alt="CredPal Logo" className="h-6 md:h-7" />
+      <div className="navbar-container">
+        <div className="navbar-left">
+          <img src="/logo.svg" alt="CredPal Logo" className="navbar-logo" />
 
-          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <div className="relative">
+          {/* Desktop menu items */}
+          <div className="navbar-menu">
+            <div className="navbar-menu-item-wrapper">
               <button
                 onClick={() =>
                   setIsProductsDropdownOpen(!isProductsDropdownOpen)
                 }
-                className="flex items-center space-x-1 text-[#000000] hover:text-[#0A2540]/80 transition-colors text-sm lg:text-base font-medium cursor-pointer"
+                className="navbar-menu-button"
               >
                 <span>Products</span>
                 <ChevronDownIcon
-                  className={`w-4 h-4 text-[#000000] transition-transform ${
-                    isProductsDropdownOpen ? 'rotate-180' : ''
-                  }`}
+                  className={`navbar-chevron ${isProductsDropdownOpen ? 'navbar-chevron-open' : ''}`}
                 />
               </button>
 
+              {/* Products dropdown */}
               {isProductsDropdownOpen && (
-                <div className="absolute left-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50">
-                  {products.map((product) => (
+                <div className="navbar-dropdown">
+                  {productList.map((product) => (
                     <a
                       key={product.name}
                       href={product.href}
-                      className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-50 transition-colors cursor-pointer"
+                      className="navbar-dropdown-item"
                       onClick={() => setIsProductsDropdownOpen(false)}
                     >
                       {product.name}
@@ -101,70 +162,60 @@ const Navbar = () => {
               )}
             </div>
 
-            <a
-              href="#"
-              className="text-[#000000] hover:text-[#0A2540]/80 transition-colors text-sm lg:text-base font-medium cursor-pointer"
-            >
+            <a href="#" className="navbar-menu-link">
               Business
             </a>
-            <a
-              href="#"
-              className="text-[#000000] hover:text-[#0A2540]/80 transition-colors text-sm lg:text-base font-medium cursor-pointer "
-            >
+            <a href="#" className="navbar-menu-link">
               Shop
             </a>
           </div>
         </div>
 
-        <div className="flex items-center space-x-3 md:space-x-4">
-          <div className="relative">
+        <div className="navbar-right">
+          {/* Country selector */}
+          <div className="navbar-country-wrapper">
             <button
               onClick={() => setIsCountryDropdownOpen(!isCountryDropdownOpen)}
-              className="flex items-center space-x-1 px-2 py-1 rounded-lg hover:bg-white/50 transition-colors cursor-pointer"
+              className="navbar-country-button"
             >
               <img
                 src={selectedFlagUrl}
                 alt={selectedCountry.name}
-                className="w-5 h-5 object-cover rounded-full"
+                className="navbar-country-flag"
                 onError={handleSelectedFlagError}
               />
               <ChevronDownIcon
-                className={`w-4 h-4 text-[#000000] transition-transform cursor-pointer ${
-                  isCountryDropdownOpen ? 'rotate-180' : ''
-                }`}
+                className={`navbar-chevron ${isCountryDropdownOpen ? 'navbar-chevron-open' : ''}`}
               />
             </button>
 
+            {/* Country dropdown */}
             {isCountryDropdownOpen && (
-              <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-xl border border-gray-200 overflow-hidden z-50 cursor-pointer">
-                {countries.map((country) => (
+              <div className="navbar-dropdown navbar-dropdown-right">
+                {countryList.map((country) => (
                   <CountryItem
                     key={country.code}
                     country={country}
                     isSelected={selectedCountry.code === country.code}
-                    onSelect={(country) => {
-                      setSelectedCountry(country);
-                      setIsCountryDropdownOpen(false);
-                    }}
+                    onSelect={handleCountrySelect}
                   />
                 ))}
               </div>
             )}
           </div>
 
-          <button className="bg-black  text-white px-4 md:px-6 py-2 rounded-full cursor-pointer hover:bg-gray-800 transition-colors font-medium text-sm md:text-base shadow-md hover:shadow-lg">
+          {/* Get the App button */}
+          <button className="navbar-app-button">
             Get the App
           </button>
         </div>
       </div>
 
+      {/* Overlay to close dropdowns when clicking outside */}
       {(isCountryDropdownOpen || isProductsDropdownOpen) && (
         <div
-          className="fixed inset-0 z-40"
-          onClick={() => {
-            setIsCountryDropdownOpen(false);
-            setIsProductsDropdownOpen(false);
-          }}
+          className="navbar-overlay"
+          onClick={handleDropdownClose}
         />
       )}
     </nav>

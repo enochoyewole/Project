@@ -1,27 +1,27 @@
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import ShopWithConfidence from './components/shop-with-confidence';
-import TakePaySection from './components/take-pay-section';
-import ShopWithCredpalSection from './components/shop-with-credpal-section';
-import CredpalSavings from './components/credpal-savings';
-import GrowFasterSection from './components/grow-faster-section';
-import ShopLikePro from './components/shop-like-pro';
-import Footer from './components/Footer';
+// Main App component - brings together all the page sections
+import NavigationBar from './components/Navbar';
+import HeroSection from './components/Hero';
+import ShopWithConfidence from './components/ShopWithConfidence';
+import TakePaySection from './components/TakePaySection';
+import ShopWithCredpalSection from './components/ShopWithCredpalSection';
+import CredpalSavings from './components/CredpalSavings';
+import GrowFasterSection from './components/GrowFasterSection';
+import ShopLikePro from './components/ShopLikePro';
+import FooterSection from './components/Footer';
 import './App.css';
 
 function App() {
   return (
-    <div className="min-h-screen">
-      <Navbar />
-      <Hero />
+    <div className="app">
+      <NavigationBar />
+      <HeroSection />
       <ShopWithConfidence />
       <TakePaySection />
       <ShopWithCredpalSection />
       <CredpalSavings />
       <ShopLikePro />
       <GrowFasterSection />
-
-      <Footer />
+      <FooterSection />
     </div>
   );
 }
